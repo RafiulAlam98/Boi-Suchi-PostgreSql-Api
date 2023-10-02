@@ -7,6 +7,7 @@ import { IGenericResponse } from "../../../interfaces/common";
 import { paginationHelpers } from "../../../helpers/paginationHelper";
 import { whereCondition } from "../../../helpers/whereCondition";
 import { categorySearchableFields } from "./category.constant";
+import httpStatus from "http-status";
 
 const insertIntoDb = async (payload: Category): Promise<Category> => {
   try {
@@ -17,7 +18,7 @@ const insertIntoDb = async (payload: Category): Promise<Category> => {
   } catch (error) {
     const err = error as any;
     if (err.code === "P2002") {
-      throw new ApiError(409, "This Category is already Exist !! ");
+      throw new ApiError(httpStatus.BAD_REQUEST, "Category Already Exist!");
     }
     throw error;
   }
@@ -69,7 +70,7 @@ const deleteCategory = async (id: string) => {
   } catch (error) {
     const err = error as any;
     if (err.code === "P2025") {
-      throw new ApiError(404, "Category Not Found !!!");
+      throw new ApiError(httpStatus.NOT_FOUND, "Category  Not Found!");
     }
   }
 };
@@ -84,10 +85,10 @@ const updateSingleCategory = async (id: string, newData: Partial<Category>) => {
   } catch (error) {
     const err = error as any;
     if (err.code === "P2002") {
-      throw new ApiError(409, "This Category is already Exist");
+      throw new ApiError(httpStatus.BAD_REQUEST, "Category Already Exist!");
     }
     if (err.code === "P2025") {
-      throw new ApiError(404, "Category  Not Found !!!");
+      throw new ApiError(httpStatus.NOT_FOUND, "Category  Not Found!");
     }
     throw error;
   }

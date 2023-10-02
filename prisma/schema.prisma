@@ -20,8 +20,11 @@ model User {
   contactNo  String
   address    String
   profileImg String
+
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+
+  reviews     Review[]
 
 
   @@unique([email], name: "unique_user")
@@ -31,10 +34,50 @@ model User {
 model Category {
   id        String   @id @default(uuid())
   title     String
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  Book      Book[]
 
   @@unique([title], name: "unique_category")
   @@map("category")
+}
+
+model Book {
+  id              String        @id @default(uuid())
+  title           String
+  author          String?
+  price           Float?
+  genre           String?
+  publicationDate DateTime?
+
+  createdAt       DateTime?     @default(now())
+  updatedAt       DateTime?     @updatedAt
+
+  reviews     Review[]
+
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId String
+
+  @@unique([title], name: "unique_book")
+  @@map("books")
+}
+
+
+model Review {
+  id        String   @id @default(uuid())
+  review    String
+  rating    Int
+  userId    String
+  bookId    String
+
+  user      User     @relation(fields: [userId], references: [id])
+
+  book      Book     @relation(fields: [bookId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("reviews")
 }
