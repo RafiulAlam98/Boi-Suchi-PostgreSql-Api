@@ -6,6 +6,7 @@ This is a RESTful API for managing a book catalogue. It allows you to manage use
 
 ## Table of Contents
 - [Features](#features)
+- [Technologies](#technologies)
 - [Endpoints](#endpoints)
   - [User](#user)
   - [Category](#category)
@@ -15,6 +16,13 @@ This is a RESTful API for managing a book catalogue. It allows you to manage use
 - [Usage](#usage)
 - [Authentication](#authentication)
 
+## Technologies Used
+
+    Backend: Node.js, Express.js, TypeScript
+    Database: PostgreSQL, Prisma ORM
+    Deployment: Vercel and Supabase
+    Authentication: JWT
+    Packages Used: bcrypt, http-errors, http-status-codes, zod
 
 ## Features
 
