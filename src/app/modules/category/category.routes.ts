@@ -4,8 +4,10 @@ import validateRequest from "../../middlewares/validateRequest";
 import { ENUM_USER_ROLE } from "../../../enums/user";
 import { CategoryValidation } from "./category.validation";
 import { CategoryControllers } from "./category.controller";
-
 const router = express.Router();
+
+router.get("/", CategoryControllers.getAllCategories);
+
 router.post(
   "/create-category",
   auth(ENUM_USER_ROLE.ADMIN),
@@ -28,6 +30,6 @@ router.delete(
   CategoryControllers.deleteCategory
 );
 
-router.get("/", CategoryControllers.getAllCategories);
+
 
 export const CategoryRoutes = router;
