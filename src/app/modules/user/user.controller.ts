@@ -70,6 +70,7 @@ const updateSingleUser = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+
 const getProfile = catchAsync(async (req: Request, res: Response) => {
   const { token } = req.headers;
 
