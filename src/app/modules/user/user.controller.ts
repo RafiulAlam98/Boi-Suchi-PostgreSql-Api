@@ -72,9 +72,9 @@ const updateSingleUser = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getProfile = catchAsync(async (req: Request, res: Response) => {
-  const { token } = req.headers;
-
-  const result = await UserServices.getProfile(token);
+  const { authorization } = req.headers;
+  console.log(authorization);
+  const result = await UserServices.getProfile(authorization);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
