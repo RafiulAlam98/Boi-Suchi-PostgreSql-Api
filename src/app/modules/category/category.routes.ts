@@ -7,7 +7,7 @@ import { CategoryControllers } from "./category.controller";
 
 const router = express.Router();
 router.post(
-  "/add-category",
+  "/create-category",
   auth(ENUM_USER_ROLE.ADMIN),
   validateRequest(CategoryValidation.createValidation),
   CategoryControllers.insertIntoDb

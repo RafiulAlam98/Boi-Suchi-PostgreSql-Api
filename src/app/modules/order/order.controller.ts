@@ -42,7 +42,7 @@ const deleteOrder = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getSingleOrder = catchAsync(async (req: Request, res: Response) => {
-  const { id } = req.params;
+  const id = req.params.orderId;
 
   const result = await OrderServices.getSingleOrder(id);
 

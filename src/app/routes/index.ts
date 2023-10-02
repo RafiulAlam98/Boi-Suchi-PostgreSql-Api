@@ -17,11 +17,11 @@ const moduleRoutes = [
     route: AuthRoutes,
   },
   {
-    path: "/category",
+    path: "/categories",
     route: CategoryRoutes,
   },
   {
-    path: "/book",
+    path: "/books",
     route: BookRoutes,
   },
   {
@@ -29,7 +29,7 @@ const moduleRoutes = [
     route: OrderedBookRoutes,
   },
   {
-    path: "/order",
+    path: "/orders",
     route: OrderRoutes,
   },
 ];

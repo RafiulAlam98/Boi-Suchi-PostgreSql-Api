@@ -10,7 +10,7 @@ router.post(
   OrderControllers.insertOrderIntoDb
 );
 
-router.get("/:id", OrderControllers.getSingleOrder);
+router.get("/:orderId", OrderControllers.getSingleOrder);
 
 router.get("/", auth(ENUM_USER_ROLE.ADMIN), OrderControllers.getAllOrders);
 

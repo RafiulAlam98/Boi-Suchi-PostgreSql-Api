@@ -8,7 +8,7 @@ import { BookValidation } from "./book.validation";
 const router = express.Router();
 
 router.post(
-  "/add-new-book",
+  "/create-book",
   auth(ENUM_USER_ROLE.ADMIN),
   validateRequest(BookValidation.addBookValidation),
   BookControllers.insertIntoDb
@@ -16,7 +16,7 @@ router.post(
 
 router.get("/:id", BookControllers.getSingleBook);
 
-router.get("/category/:categoryId", BookControllers.getBooksByCategoryId);
+router.get("/:categoryId/category", BookControllers.getBooksByCategoryId);
 
 router.patch(
   "/:id",

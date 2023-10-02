@@ -60,6 +60,7 @@ const getAllOrders = async (
 };
 
 const getSingleOrder = async (id: string) => {
+  console.log(id);
   const result = await prisma.order.findUnique({
     where: { id },
     include: { orderedBooks: true, users: true },
