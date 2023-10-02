@@ -43,6 +43,9 @@ const getAllCategories = async (
     skip,
     take: limit,
     orderBy: sortConditions,
+    include: {
+      books: true,
+    },
   });
   const total = await prisma.category.count();
   return {
@@ -58,6 +61,9 @@ const getAllCategories = async (
 const getSingleCategory = async (id: string) => {
   const result = await prisma.category.findUnique({
     where: { id },
+    include: {
+      books: true,
+    },
   });
   return result;
 };
@@ -80,6 +86,9 @@ const updateSingleCategory = async (id: string, newData: Partial<Category>) => {
     const updatedSemester = await prisma.category.update({
       where: { id },
       data: newData,
+      include: {
+        books: true,
+      },
     });
     return updatedSemester;
   } catch (error) {
