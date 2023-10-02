@@ -5,12 +5,12 @@ export type ILoginUser = {
   password: string;
 };
 
-export type ILoginUserResponse = {
-  token: string;
+export type IUserLoginResponse = {
+  accessToken: string;
 };
 
 export type IRefreshTokenResponse = {
-  token: string;
+  accessToken: string;
   role?: string;
 };
 

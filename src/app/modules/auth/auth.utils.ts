@@ -1,8 +1,8 @@
 /* eslint-disable no-useless-catch */
 import * as bcrypt from "bcrypt";
-import { StatusCodes } from "http-status-codes";
 import config from "../../../config";
 import ApiError from "../../../errors/ApiError";
+import httpStatus from "http-status";
 
 export const hashPassword = async (password: string): Promise<string> => {
   const hashedPassword = await bcrypt.hash(
@@ -21,8 +21,8 @@ export const isPasswordMatched = async (
     return match;
   } catch (error) {
     throw new ApiError(
-      StatusCodes.NOT_ACCEPTABLE,
-      "Error Occured! Please try again"
+      httpStatus.NOT_ACCEPTABLE,
+      "Password did not match! Please Try again."
     );
   }
 };

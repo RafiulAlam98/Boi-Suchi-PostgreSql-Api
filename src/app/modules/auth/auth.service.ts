@@ -4,7 +4,7 @@ import prisma from "../../../shared/prisma";
 import * as bcrypt from "bcrypt";
 import ApiError from "../../../errors/ApiError";
 import httpStatus from "http-status";
-import { ILoginUser, ILoginUserResponse } from "./auth.interface";
+import { ILoginUser, IUserLoginResponse } from "./auth.interface";
 import { isPasswordMatched } from "./auth.utils";
 import { jwtHelpers } from "../../../helpers/jwtHelpers";
 import config from "../../../config";
@@ -35,7 +35,7 @@ const signUp = async (payload: User): Promise<User> => {
 
 const loginuser = async (
   payload: ILoginUser
-): Promise<ILoginUserResponse | undefined> => {
+): Promise<IUserLoginResponse | undefined> => {
   const { email, password } = payload;
   console.log(payload);
   const isFound = await prisma.user.findFirst({
@@ -57,7 +57,7 @@ const loginuser = async (
     const role = isFound.role;
     const userId = isFound.userId;
     const id = isFound.id;
-    const token = jwtHelpers.createToken(
+    const accessToken = jwtHelpers.createToken(
       { role, userId, id },
 
       config.jwt.secret as Secret,
@@ -65,7 +65,7 @@ const loginuser = async (
     );
 
     return {
-      token,
+      accessToken,
     };
   }
 };
