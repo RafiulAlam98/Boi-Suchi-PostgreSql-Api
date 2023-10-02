@@ -25,7 +25,7 @@ model User {
   updatedAt  DateTime @updatedAt
 
   reviews     Review[]
-
+  orders      Order[]
 
   @@unique([email], name: "unique_user")
   @@map("user")
@@ -64,7 +64,6 @@ model Book {
   @@map("books")
 }
 
-
 model Review {
   id        String   @id @default(uuid())
   review    String
@@ -80,4 +79,28 @@ model Review {
   updatedAt DateTime @updatedAt
 
   @@map("reviews")
+}
+
+model Order {
+  id           String       @id @default(uuid())
+  userId       String
+  status       OrderStatus? @default(pending)
+
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  customers     User         @relation(fields: [userId], references: [id])
+  orderedId    String
+  
+
+  @@unique([orderedId], name: "unique_orderedId")
+  @@map("order")
+}
+
+
+enum OrderStatus {
+  pending
+  shipped
+  delivered
+  canceled
 }
