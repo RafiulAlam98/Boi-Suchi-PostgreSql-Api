@@ -57,7 +57,7 @@ const loginuser = async (
     const role = isFound.role;
     const userId = isFound.userId;
     const id = isFound.id;
-    const accessToken = jwtHelpers.createToken(
+    const token = jwtHelpers.createToken(
       { role, userId, id },
 
       config.jwt.secret as Secret,
@@ -65,7 +65,7 @@ const loginuser = async (
     );
 
     return {
-      accessToken,
+      token,
     };
   }
 };

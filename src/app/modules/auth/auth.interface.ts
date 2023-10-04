@@ -6,11 +6,11 @@ export type ILoginUser = {
 };
 
 export type IUserLoginResponse = {
-  accessToken: string;
+  token: string;
 };
 
 export type IRefreshTokenResponse = {
-  accessToken: string;
+  token: string;
   role?: string;
 };
 

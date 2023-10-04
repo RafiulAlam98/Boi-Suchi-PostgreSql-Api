@@ -13,25 +13,20 @@ const sendLoginResponse = async (
   message: string,
   token: string
 ) => {
-  sendResponse(res, {
+  sendResponse<IUserLoginResponse>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "User Created Successfully!",
-    data: token,
+    message,
+    token,
   });
 };
 
 const loginUser = catchAsync(async (req: Request, res: Response) => {
   const { ...loginData } = req.body;
   const result = (await AuthService.loginuser(loginData)) as IUserLoginResponse;
-  const { accessToken } = result;
-  console.log(result.accessToken);
-  sendResponse(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: "User Sign In successfully!",
-    data: result,
-  });
+  const { token } = result;
+  console.log(result.token);
+  sendLoginResponse(res, "User Sign In successfully!", token);
 });
 
 export const AuthController = {
